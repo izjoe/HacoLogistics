@@ -1,24 +1,31 @@
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
-import { AuthProvider, useAuth } from "./components/AuthContext";
-import { LanguageProvider } from "./components/LanguageContext";
+import { AuthProvider, useAuth } from "./context/AuthContext";
+import { LanguageProvider } from "./context/LanguageContext";
 
-import Home from "./components/Home";
-import About from "./components/About";
-import Services from "./components/Services";
-import News from "./components/News";
-import Contact from "./components/Contact";
-import Signup from "./components/Signup";
-import Login from "./components/Login";
+// Import từ pages
+import Home from "./pages/Home";
+import About from "./pages/About";
+import Services from "./pages/Services";
+import News from "./pages/News";
+import Contact from "./pages/Contact";
+import Signup from "./pages/Signup";
+import Login from "./pages/Login";
+import Viewvehicle from "./pages/viewvehicle";
+import Addvehicle from "./pages/addvehicle";
+import Book from "./pages/book";
+import Checkout from "./pages/checkout";
+import Updatevehicle from "./pages/updatevehicle";
+import Driverdashboard from "./pages/driverdashboard";
+import Shipperdashboard from "./pages/shipperdashboard";
+import Resetpassword from "./pages/resetpassword";
+import AdminLayout from "./pages/admin/AdminLayout";
+import AdminContact from "./pages/admin/AdminContact";
+import AdminNews from "./pages/admin/AdminNews";
+import AdminUsers from "./pages/admin/AdminUsers";
+
+// Import từ components
 import Nav from "./components/Nav";
-import Viewvehicle from "./components/viewvehicle";
-import Addvehicle from "./components/addvehicle";
-import Book from "./components/book";
-import Checkout from "./components/checkout";
-import Updatevehicle from "./components/updatevehicle";
-import Driverdashboard from "./components/driverdashboard";
-import Shipperdashboard from "./components/shipperdashboard";
 import AI from "./components/ai";
-import Resetpassword from "./components/resetpassword";
 
 function AppRoutes() {
   const { userData, loading } = useAuth();
@@ -30,6 +37,11 @@ function AppRoutes() {
       </div>
     );
   }
+
+  const AdminRoute = (el) =>
+    !userData ? <Navigate to="/login" /> :
+    userData.role !== "admin" ? <Navigate to="/" /> :
+    el;
 
   const ShipperRoute = (el) =>
     !userData ? <Navigate to="/login" /> :
@@ -43,10 +55,10 @@ function AppRoutes() {
 
   return (
     <>
-      <Nav />
+      {!window.location.pathname.startsWith('/admin') && <Nav />}
       <AI />
 
-      <div className="pt-20 bg-white min-h-screen text-yellow-900">
+      <div className={!window.location.pathname.startsWith('/admin') ? "pt-20 bg-white min-h-screen text-yellow-900" : ""}>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
@@ -65,6 +77,14 @@ function AppRoutes() {
           <Route path="/addvehicle" element={DriverRoute(<Addvehicle />)} />
           <Route path="/updatevehicle" element={DriverRoute(<Updatevehicle />)} />
           <Route path="/driverdashboard" element={DriverRoute(<Driverdashboard />)} />
+
+          <Route path="/admin" element={AdminRoute(<AdminLayout />)}>
+             <Route index element={<div className="p-10 text-2xl">Chào mừng Admin quay lại! 👋</div>} />
+             <Route path="contacts" element={<AdminContact />} />
+             <Route path="news" element={<AdminNews />} />
+             <Route path="users" element={<AdminUsers />} />
+          </Route>
+          
         </Routes>
       </div>
     </>

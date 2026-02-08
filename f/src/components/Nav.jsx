@@ -16,8 +16,8 @@ import {
   LayoutDashboard,
   Globe,
 } from "lucide-react";
-import { useAuth } from "./AuthContext";
-import { useLanguage } from "./LanguageContext";
+import { useAuth } from "../context/AuthContext";
+import { useLanguage } from "../context/LanguageContext";
 
 const Nav = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
