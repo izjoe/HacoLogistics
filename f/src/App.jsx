@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 import { AuthProvider, useAuth } from "./context/AuthContext";
 import { LanguageProvider } from "./context/LanguageContext";
+import { Toaster } from 'react-hot-toast';
 
 // Import từ pages
 import Home from "./pages/Home";
@@ -55,6 +56,7 @@ function AppRoutes() {
 
   return (
     <>
+    <Toaster position="top-right" reverseOrder={false} />
       {!window.location.pathname.startsWith('/admin') && <Nav />}
       <AI />
 
@@ -84,7 +86,7 @@ function AppRoutes() {
              <Route path="news" element={<AdminNews />} />
              <Route path="users" element={<AdminUsers />} />
           </Route>
-          
+
         </Routes>
       </div>
     </>

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axiosClient from "../../api/axiosClient";
 import { Trash2, Plus } from "lucide-react";
+import { toast } from 'react-hot-toast';
 
 export default function AdminNews() {
   const [news, setNews] = useState([]);
@@ -27,13 +28,13 @@ export default function AdminNews() {
       await axiosClient.post("/news", formData, {
         headers: { "Content-Type": "multipart/form-data" }
       });
-      alert("Đã đăng tin thành công!");
+      toast.success("Đã đăng tin thành công!");
       setShowModal(false);
       setForm({ title: "", content: "" });
       setImage(null);
       fetchNews();
     } catch (err) {
-      alert("Lỗi khi đăng tin");
+      toast.error("Lỗi khi đăng tin");
     }
   };
 

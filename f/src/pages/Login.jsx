@@ -3,7 +3,8 @@ import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import axiosClient from "../api/axiosClient";
-
+import toast from 'react-hot-toast';
+  
 export default function Login() {
   const navigate = useNavigate();
   const { login } = useAuth();
