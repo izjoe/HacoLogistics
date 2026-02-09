@@ -3,7 +3,7 @@ import { useLanguage } from "./LanguageContext";
 import { Phone, Mail, MapPin, Clock, Send } from "lucide-react";
 
 export default function Contact() {
-  const { t, language } = useLanguage();
+  const { t } = useLanguage();
   const [form, setForm] = useState({
     name: "",
     email: "",

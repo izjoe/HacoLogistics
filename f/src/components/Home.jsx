@@ -27,12 +27,11 @@ import {
 
 const Home = () => {
   const navigate = useNavigate();
-  const { t, language } = useLanguage();
+  const { t } = useLanguage();
   const [typedText, setTypedText] = useState("");
   const [currentFeature, setCurrentFeature] = useState(0);
 
-  const fullText = "Logistics";
-
+  const fullText = "Through integrated logistics solutions and experienced teams, we help optimize costs, shorten delivery times, and strengthen your supply chain performance.";
   // Typing Animation
   useEffect(() => {
     let i = 0;
@@ -50,171 +49,58 @@ const Home = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-white via-white to-yellow-50 text-gray-900 overflow-hidden relative">
-
-      {/* Full-page background (glowing blobs + grid) */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute -top-60 -right-60 w-[800px] h-[800px] bg-yellow-300/10 rounded-full blur-3xl" />
-        <div className="absolute top-40 -left-60 w-[700px] h-[700px] bg-amber-300/10 rounded-full blur-3xl" />
-        <div className="absolute bottom-0 left-1/3 w-[600px] h-[600px] bg-yellow-400/10 rounded-full blur-3xl" />
-
-        {/* grid lines */}
-        <div
-          className="absolute inset-0 opacity-[0.02]"
-          style={{
-            backgroundImage: `
-              linear-gradient(to right, #333 1px, transparent 1px),
-              linear-gradient(to bottom, #333 1px, transparent 1px)
-            `,
-            backgroundSize: "50px 50px",
-          }}
-        />
-      </div>
+    <div className="bg-white text-gray-900 overflow-hidden relative">
 
       {/* PAGE CONTENT */}
       <div className="relative z-10">
 
         {/* HERO ────────────────────────────────────────────── */}
-        <div className="pt-20 px-4 md:px-8">
-          <div className="grid lg:grid-cols-2 gap-12 items-center max-w-7xl mx-auto">
+        <section className="relative min-h-screen bg-[url('/background.jpg')] bg-cover bg-center overflow-hidden">
+          {/* Gradient overlay - darker left to lighter right */}
+          <div 
+            className="absolute inset-0"
+            style={{
+              background: 'linear-gradient(90deg, rgba(0,0,0,0.65) 0%, rgba(0,0,0,0.45) 40%, rgba(0,0,0,0.15) 70%, rgba(0,0,0,0.05) 100%)'
+            }}
+          />
+          
+          {/* Hero content */}
+          <div className="relative z-10 px-4 md:px-8 flex items-center min-h-screen">
+            <div className="max-w-7xl mx-auto w-full pt-20">
+              {/* LEFT HERO - Limited width for focus */}
+              <div className="max-w-[520px]">
+                <h1 className="text-6xl md:text-7xl font-bold leading-[1.1] mb-4">
+                  <span className="text-yellow-300">Haco</span>
+                  <span className="text-yellow-100">Logistics</span>
+                </h1>
 
-            {/* LEFT HERO */}
-            <div>
-              <h1 className="text-6xl md:text-7xl font-bold leading-tight">
-                <span className="text-yellow-600">Haco</span>
-                <span className="text-yellow-500 drop-shadow-md">Logistics</span>
-              </h1>
-
-              <p className="pb-2 text-3xl md:text-4xl bg-gradient-to-r from-yellow-600 to-yellow-700 bg-clip-text text-transparent font-medium tracking-wide">
-                Redefining Logistics
-              </p>
-
-              <div className="text-2xl text-gray-700 mb-4 h-16 mt-8">
-                {typedText}
-                <span className="animate-pulse">|</span>
-              </div>
-
-              {/* Buttons */}
-              <div className="flex flex-col sm:flex-row gap-4 items-center mt-6">
-                <button
-                  onClick={() => handleGetStarted("shipper")}
-                  className="px-8 py-4 bg-gradient-to-r from-yellow-400 to-yellow-600 text-white font-semibold rounded-full hover:scale-105 transition-all flex items-center group shadow-lg hover:shadow-yellow-500/50"
-                >
-                  <span>{t("home_page.get_started")}</span>
-                  <ArrowRight className="ml-3 w-5 h-5 group-hover:translate-x-2 transition-transform" />
-                </button>
-
-                <Link
-                  to="/viewvehicle"
-                  className="px-8 py-4 bg-yellow-50 border-2 border-yellow-600 text-yellow-700 rounded-full hover:bg-yellow-100 transition-all flex items-center group font-semibold"
-                >
-                  <MapPin className="mr-3 w-5 h-5 group-hover:scale-110 transition-transform" />
-                  {t("home_page.how_it_works")}
-                </Link>
-              </div>
-
-              {/* Highlights */}
-              <div className="mt-10 flex items-center space-x-6">
-                <div className="flex items-center group">
-                  <Shield className="w-5 h-5 text-green-600 mr-2 group-hover:scale-110 transition-transform" />
-                  <span className="text-sm text-gray-700 group-hover:text-green-700 transition-colors">100% Secure</span>
+                <div className="text-xl text-yellow-50/90 mb-2 h-12 mt-2 font-medium">
+                  {typedText}
+                  <span className="animate-pulse ml-1">|</span>
                 </div>
-                <div className="flex items-center group">
-                  <Zap className="w-5 h-5 text-yellow-600 mr-2 group-hover:scale-110 transition-transform" />
-                  <span className="text-sm text-gray-700 group-hover:text-yellow-700 transition-colors">AI-Powered</span>
-                </div>
-                <div className="flex items-center group">
-                  <Wallet className="w-5 h-5 text-yellow-600 mr-2 group-hover:scale-110 transition-transform" />
-                  <span className="text-sm text-gray-700 group-hover:text-yellow-700 transition-colors">Transparent Pricing</span>
+
+                {/* Buttons */}
+                <div className="flex flex-col sm:flex-row gap-4 mt-15">
+                  <button
+                    onClick={() => handleGetStarted("shipper")}
+                    className="px-8 py-4 bg-gradient-to-r from-yellow-400 to-yellow-600 text-white font-semibold rounded-full hover:-translate-y-1 transition-all flex items-center group shadow-[0_8px_30px_rgba(255,185,0,0.35)] hover:shadow-[0_12px_40px_rgba(255,185,0,0.45)]"
+                  >
+                    <span>{t("home_page.get_started")}</span>
+                    <ArrowRight className="ml-3 w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                  </button>
+
+                  <Link
+                    to="/viewvehicle"
+                    className="px-8 py-4 bg-white/10 backdrop-blur-md border-2 border-white/30 text-white rounded-full hover:-translate-y-1 transition-all flex items-center group font-semibold shadow-[0_8px_30px_rgba(255,255,255,0.1)] hover:bg-white/20"
+                  >
+                    <MapPin className="mr-3 w-5 h-5 group-hover:scale-110 transition-transform" />
+                    {t("home_page.how_it_works")}
+                  </Link>
                 </div>
               </div>
             </div>
-
-            {/* RIGHT SIDE - MODERN LOGISTICS IMAGE WITH OVERLAY */}
-            <div className="relative lg:ml-8 group">
-              {/* Main image container */}
-              <div className="relative rounded-2xl overflow-hidden shadow-2xl group">
-                {/* Background gradient */}
-                <div className="absolute inset-0 bg-gradient-to-br from-yellow-400/20 via-yellow-300/10 to-amber-400/20" />
-                
-                {/* Main logistics image */}
-                <div className="relative h-96 w-full">
-                  {/* Placeholder for actual image - using a logistics-themed background */}
-                  <div 
-                    className="absolute inset-0 bg-gradient-to-br from-yellow-100 to-yellow-50 group-hover:scale-105 transition-transform duration-700"
-                    style={{
-                      backgroundImage: `url('/logic.JPG')`,
-                      backgroundSize: 'cover',
-                      backgroundPosition: 'center',
-                      backgroundBlendMode: 'overlay'
-                    }}
-                  />
-                  
-                  {/* Overlay gradient */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-white via-white/60 to-transparent" />
-                  
-                  {/* Floating UI elements overlay */}
-                  <div className="absolute top-6 left-6">
-                    <div className="bg-gradient-to-r from-yellow-400 to-yellow-500 rounded-xl p-3 shadow-lg hover:scale-105 transition-transform">
-                      <div className="flex items-center gap-2">
-                        <Truck className="w-6 h-6 text-white" />
-                        <span className="text-white font-bold text-sm">1.2k Active</span>
-                      </div>
-                    </div>
-                  </div>
-                  
-                  {/* Stats overlay at bottom */}
-                  <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-white to-transparent p-6">
-                    <div className="flex items-center justify-between">
-                      <div className="text-center group">
-                        <p className="text-2xl font-bold text-yellow-700 group-hover:scale-110 transition-transform">98%</p>
-                        <p className="text-xs text-gray-600 group-hover:text-yellow-700 transition-colors">Accuracy</p>
-                      </div>
-                      <div className="text-center group">
-                        <p className="text-2xl font-bold text-yellow-700 group-hover:scale-110 transition-transform">35%</p>
-                        <p className="text-xs text-gray-600 group-hover:text-yellow-700 transition-colors">Faster</p>
-                      </div>
-                      <div className="text-center group">
-                        <p className="text-2xl font-bold text-yellow-700 group-hover:scale-110 transition-transform">24/7</p>
-                        <p className="text-xs text-gray-600 group-hover:text-yellow-700 transition-colors">Tracking</p>
-                      </div>
-                    </div>
-                  </div>
-                 
-                </div>
-                
-                {/* Decorative border effect */}
-                <div className="absolute inset-0 border-2 border-transparent group-hover:border-yellow-400/30 rounded-2xl transition-all duration-300" />
-              </div>
-              
-              {/* Small floating cards around the main image */}
-              <div className="absolute -bottom-4 -left-4 bg-gradient-to-br from-yellow-300/20 to-amber-300/20 backdrop-blur-lg rounded-xl p-4 border border-yellow-400/30 shadow-lg max-w-[180px] hover:-translate-y-1 hover:scale-105 transition-all duration-300">
-                <div className="flex items-center gap-3">
-                  <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-yellow-400/30 to-amber-400/30 flex items-center justify-center group-hover:rotate-12 transition-transform">
-                    <Sparkles className="w-4 h-4 text-yellow-600" />
-                  </div>
-                  <div>
-                    <p className="text-xs text-gray-700">AI Powered</p>
-                    <p className="text-sm font-bold text-yellow-700">Real-time</p>
-                  </div>
-                </div>
-              </div>
-              
-              <div className="absolute -top-4 -right-4 bg-gradient-to-br from-yellow-300/20 to-orange-300/20 backdrop-blur-lg rounded-xl p-4 border border-yellow-400/30 shadow-lg max-w-[180px] hover:-translate-y-1 hover:scale-105 transition-all duration-300">
-                <div className="flex items-center gap-3">
-                  <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-yellow-400/30 to-orange-400/30 flex items-center justify-center group-hover:rotate-12 transition-transform">
-                    <TrendingUp className="w-4 h-4 text-yellow-700" />
-                  </div>
-                  <div>
-                    <p className="text-xs text-gray-700">Network</p>
-                    <p className="text-sm font-bold text-yellow-700">500+ Cities</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-
           </div>
-        </div>
+        </section>
 
         {/* FEATURES  */}
         <div className="max-w-7xl mx-auto mt-24 px-4">

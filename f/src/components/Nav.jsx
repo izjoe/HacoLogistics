@@ -73,6 +73,16 @@ const Nav = () => {
           <div className="hidden md:flex items-center space-x-1">
             {/* Public Navigation */}
             <Link
+              to="/"
+              className={`px-4 py-2.5 rounded-full transition-all font-medium ${
+                isActive("/")
+                  ? "bg-yellow-300/40 text-yellow-700 shadow-lg"
+                  : "text-gray-700 hover:bg-yellow-100/40 hover:text-yellow-800"
+              }`}
+            >
+              {t("nav.home")}
+            </Link>
+            <Link
               to="/about"
               className={`px-4 py-2.5 rounded-full transition-all font-medium ${
                 isActive("/about")
